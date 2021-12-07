@@ -14,6 +14,7 @@ import 'package:gallery/data/gallery_options.dart';
 import 'package:gallery/layout/adaptive.dart';
 import 'package:gallery/layout/image_placeholder.dart';
 import 'package:gallery/pages/category_list_item.dart';
+import 'package:gallery/pages/experience_list_item.dart';
 import 'package:gallery/pages/settings.dart';
 import 'package:gallery/pages/splash.dart';
 import 'package:gallery/studies/crane/colors.dart';
@@ -135,33 +136,13 @@ class HomePage extends StatelessWidget {
       ),
     ];
 
+    final experienceItems = <_ExperienceItem>[
+      const _ExperienceItem(jobTitle: enVistaJobTitle,company: enVistaCompany, duration: enVistaDuration, details: enVistaDetails),
+      const _ExperienceItem(jobTitle: EYJobTitle,company: EYCompany, duration: EYDuration, details: EYDetails),
+      const _ExperienceItem(jobTitle: mphasisJobTitle,company: mphasisCompany, duration: mphasisDuration, details: mphasisDetails)
+    ];
+
     if (isDesktop) {
-      final desktopCategoryItems = <_DesktopCategoryItem>[
-        _DesktopCategoryItem(
-          category: GalleryDemoCategory.material,
-          asset: const AssetImage(
-            'assets/icons/material/material.png',
-            package: 'flutter_gallery_assets',
-          ),
-          demos: materialDemos(localizations),
-        ),
-        _DesktopCategoryItem(
-          category: GalleryDemoCategory.cupertino,
-          asset: const AssetImage(
-            'assets/icons/cupertino/cupertino.png',
-            package: 'flutter_gallery_assets',
-          ),
-          demos: cupertinoDemos(localizations),
-        ),
-        _DesktopCategoryItem(
-          category: GalleryDemoCategory.other,
-          asset: const AssetImage(
-            'assets/icons/reference/reference.png',
-            package: 'flutter_gallery_assets',
-          ),
-          demos: otherDemos(localizations),
-        ),
-      ];
 
       return Scaffold(
         body: ListView(
@@ -234,10 +215,10 @@ class HomePage extends StatelessWidget {
               padding: const EdgeInsets.symmetric(
                 horizontal: _horizontalDesktopPadding,
               ),
-              child: Row(
+              child: Column(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: spaceBetween(28, desktopCategoryItems),
+                children: spaceBetween(28, experienceItems),
               ),
             ),
             Padding(
@@ -297,7 +278,7 @@ class HomePage extends StatelessWidget {
         Flexible(
           child: children[index],
         ),
-        if (index < children.length - 1) SizedBox(width: paddingBetween),
+        if (index < children.length - 1) SizedBox(height: paddingBetween),
       ],
     ];
   }
@@ -530,16 +511,19 @@ class _AnimatedHomePageState extends State<_AnimatedHomePage>
   }
 }
 
-class _DesktopCategoryItem extends StatelessWidget {
-  const _DesktopCategoryItem({
-    this.category,
-    this.asset,
-    this.demos,
+
+class _ExperienceItem extends StatelessWidget{
+  const _ExperienceItem({
+    this.jobTitle,
+    this.company,
+    this.duration,
+    this.details,
   });
 
-  final GalleryDemoCategory category;
-  final ImageProvider asset;
-  final List<GalleryDemo> demos;
+  final String jobTitle;
+  final String company;
+  final String duration;
+  final List<String> details;
 
   @override
   Widget build(BuildContext context) {
@@ -554,10 +538,9 @@ class _DesktopCategoryItem extends StatelessWidget {
           policy: WidgetOrderTraversalPolicy(),
           child: Column(
             children: [
-              _DesktopCategoryHeader(
-                category: category,
-                asset: asset,
-              ),
+              _ExperienceIndHeader(jobTitle: jobTitle,
+                  company: company,
+                  duration: duration),
               Divider(
                 height: 2,
                 thickness: 2,
@@ -566,10 +549,10 @@ class _DesktopCategoryItem extends StatelessWidget {
               Flexible(
                 child: ListView.builder(
                   // Makes integration tests possible.
-                  key: ValueKey('${category.name}DemoList'),
+                  key: ValueKey('${company}detailList'),
                   itemBuilder: (context, index) =>
-                      CategoryDemoItem(demo: demos[index]),
-                  itemCount: demos.length,
+                      ExperienceListItem(detail: details[index]),
+                  itemCount: details.length,
                 ),
               ),
             ],
@@ -580,46 +563,46 @@ class _DesktopCategoryItem extends StatelessWidget {
   }
 }
 
-class _DesktopCategoryHeader extends StatelessWidget {
-  const _DesktopCategoryHeader({
-    this.category,
-    this.asset,
+class _ExperienceIndHeader extends StatelessWidget {
+  const _ExperienceIndHeader({
+    this.jobTitle,
+    this.company,
+    this.duration
   });
-  final GalleryDemoCategory category;
-  final ImageProvider asset;
+
+  final String jobTitle;
+  final String company;
+  final String duration;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context){
     final colorScheme = Theme.of(context).colorScheme;
     return Material(
       // Makes integration tests possible.
-      key: ValueKey('${category.name}CategoryHeader'),
+      key: ValueKey('${company}CategoryHeader'),
       color: colorScheme.onBackground,
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Padding(
-            padding: const EdgeInsets.all(10),
-            child: FadeInImagePlaceholder(
-              image: asset,
-              placeholder: const SizedBox(
-                height: 64,
-                width: 64,
-              ),
-              width: 64,
-              height: 64,
-              excludeFromSemantics: true,
+            padding: const EdgeInsets.all(15),
+            child: SelectableText(
+              jobTitle+' @ '+company,
+              style: Theme.of(context).textTheme.headline5.apply(
+                color: colorScheme.onSurface,
+              )
             ),
           ),
           Flexible(
             child: Padding(
-              padding: const EdgeInsetsDirectional.only(start: 8),
+              padding: const EdgeInsetsDirectional.only(end: 8),
               child: Semantics(
                 header: true,
                 child: SelectableText(
-                  category.displayTitle(GalleryLocalizations.of(context)),
+                  duration,
                   style: Theme.of(context).textTheme.headline5.apply(
-                        color: colorScheme.onSurface,
-                      ),
+                    color: colorScheme.onSurface,
+                  ),
                 ),
               ),
             ),
@@ -629,6 +612,7 @@ class _DesktopCategoryHeader extends StatelessWidget {
     );
   }
 }
+
 
 /// Animates the category item to stagger in. The [_AnimatedCategoryItem.startDelayFraction]
 /// gives a delay in the unit of a fraction of the whole animation duration,
