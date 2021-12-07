@@ -23,9 +23,20 @@ const splashPageAnimationDurationInMilliseconds = 300;
 const firstHeaderDesktopTopPadding = 5.0;
 
 const String profilePath = 'assets/YugDassani.jpg';
+const String logoPath = 'assets/ydLogo.png';
+
+const String getTogetherLogo = 'assets/GetTogetherLogo.png';
+const String getTogetherDetails = 'An android and web app that syncs with external calendars'
+    ' and allows users to create events. Calculates optimal meeting times based on availability'
+    ' of all users and recommends location based on type of event';
+
+const String incubatorLogo = 'assets/IncubatorLogo.png';
+const String incubatorDetails = 'The perfect android application to keep track of ideas and projects.'
+    ' The app allows users to add collaborators, share documents, images, notes etc along with assigning'
+    ' tasks to users and even notifying when what is due.';
+
 const String introText = "Hi! I'm Yug Dassani.";
 const String introSubText = 'Software Developer | enVista';
-
 const String about = "I like this";
 
 const String enVistaJobTitle = 'Software Developer';

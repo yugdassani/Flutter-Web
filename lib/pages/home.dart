@@ -42,99 +42,6 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     var carouselHeight = _carouselHeight(.7, context);
     final isDesktop = isDisplayDesktop(context);
-    final localizations = GalleryLocalizations.of(context);
-    final studyDemos = studies(localizations);
-    final carouselCards = <Widget>[
-      _CarouselCard(
-        demo: studyDemos['reply'],
-        asset: const AssetImage(
-          'assets/studies/reply_card.png',
-          package: 'flutter_gallery_assets',
-        ),
-        assetColor: const Color(0xFF344955),
-        assetDark: const AssetImage(
-          'assets/studies/reply_card_dark.png',
-          package: 'flutter_gallery_assets',
-        ),
-        assetDarkColor: const Color(0xFF1D2327),
-        textColor: Colors.white,
-        studyRoute: reply_routes.homeRoute,
-      ),
-      _CarouselCard(
-        demo: studyDemos['shrine'],
-        asset: const AssetImage(
-          'assets/studies/shrine_card.png',
-          package: 'flutter_gallery_assets',
-        ),
-        assetColor: const Color(0xFFFEDBD0),
-        assetDark: const AssetImage(
-          'assets/studies/shrine_card_dark.png',
-          package: 'flutter_gallery_assets',
-        ),
-        assetDarkColor: const Color(0xFF543B3C),
-        textColor: shrineBrown900,
-        studyRoute: shrine_routes.loginRoute,
-      ),
-      _CarouselCard(
-        demo: studyDemos['rally'],
-        textColor: RallyColors.accountColors[0],
-        asset: const AssetImage(
-          'assets/studies/rally_card.png',
-          package: 'flutter_gallery_assets',
-        ),
-        assetColor: const Color(0xFFD1F2E6),
-        assetDark: const AssetImage(
-          'assets/studies/rally_card_dark.png',
-          package: 'flutter_gallery_assets',
-        ),
-        assetDarkColor: const Color(0xFF253538),
-        studyRoute: rally_routes.loginRoute,
-      ),
-      _CarouselCard(
-        demo: studyDemos['crane'],
-        asset: const AssetImage(
-          'assets/studies/crane_card.png',
-          package: 'flutter_gallery_assets',
-        ),
-        assetColor: const Color(0xFFFBF6F8),
-        assetDark: const AssetImage(
-          'assets/studies/crane_card_dark.png',
-          package: 'flutter_gallery_assets',
-        ),
-        assetDarkColor: const Color(0xFF591946),
-        textColor: cranePurple700,
-        studyRoute: crane_routes.defaultRoute,
-      ),
-      _CarouselCard(
-        demo: studyDemos['fortnightly'],
-        asset: const AssetImage(
-          'assets/studies/fortnightly_card.png',
-          package: 'flutter_gallery_assets',
-        ),
-        assetColor: Colors.white,
-        assetDark: const AssetImage(
-          'assets/studies/fortnightly_card_dark.png',
-          package: 'flutter_gallery_assets',
-        ),
-        assetDarkColor: const Color(0xFF1F1F1F),
-        studyRoute: fortnightly_routes.defaultRoute,
-      ),
-      _CarouselCard(
-        demo: studyDemos['starterApp'],
-        asset: const AssetImage(
-          'assets/studies/starter_card.png',
-          package: 'flutter_gallery_assets',
-        ),
-        assetColor: const Color(0xFFFAF6FE),
-        assetDark: const AssetImage(
-          'assets/studies/starter_card_dark.png',
-          package: 'flutter_gallery_assets',
-        ),
-        assetDarkColor: const Color(0xFF3F3D45),
-        textColor: Colors.black,
-        studyRoute: starter_app_routes.defaultRoute,
-      ),
-    ];
 
     final experienceItems = <_ExperienceItem>[
       const _ExperienceItem(jobTitle: enVistaJobTitle,company: enVistaCompany, duration: enVistaDuration, details: enVistaDetails),
@@ -142,143 +49,165 @@ class HomePage extends StatelessWidget {
       const _ExperienceItem(jobTitle: mphasisJobTitle,company: mphasisCompany, duration: mphasisDuration, details: mphasisDetails)
     ];
 
-    if (isDesktop) {
+    final projectItems = <_ProjectItem>[
+      const _ProjectItem(title: 'GetTogether',asset: AssetImage(getTogetherLogo),details: getTogetherDetails),
+      const _ProjectItem(title: 'Incubator',asset: AssetImage(incubatorLogo),details: incubatorDetails),
+    ];
 
-      return Scaffold(
-        body: ListView(
-          // Makes integration tests possible.
-          key: const ValueKey('HomeListView'),
-          padding: EdgeInsetsDirectional.only(
-            top: isDesktop ? firstHeaderDesktopTopPadding : 21,
+    return Scaffold(
+      body: ListView(
+        // Makes integration tests possible.
+        key: const ValueKey('HomeListView'),
+        padding: EdgeInsetsDirectional.only(
+          top: isDesktop ? firstHeaderDesktopTopPadding : 21,
+        ),
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: _horizontalDesktopPadding,
+            ),
+            child: _AboutHeader(),
           ),
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: _horizontalDesktopPadding,
-              ),
-              child: _AboutHeader(),
-            ),
-            SizedBox(
-              height: carouselHeight * 2,
-              child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: _horizontalDesktopPadding),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    const CircleAvatar(
-                      backgroundImage: AssetImage(profilePath),
-                      radius: 200,
-                    ),
-                    Column(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(
-                            top: 5,
-                            bottom: 5
-                          ),
-                          child: SelectableText(
-                            introText,
-                            style: Theme.of(context).textTheme.headline4?.apply(
-                            color: Colors.white,
-                            fontSizeDelta: isDisplayDesktop(context) ? 16 : 0)
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              top: 1,
-                              bottom: 5
-                          ),
-                          child: SelectableText(
-                              introSubText,
-                              style: Theme.of(context).textTheme.headline4?.apply(
-                                  color: Colors.grey,
-                                  fontSizeDelta: isDisplayDesktop(context) ? 6 : 0)
-                          ),
-                        )
-                      ],
-                    )
-                  ],
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: _horizontalDesktopPadding,
-              ),
-              child: _ExperienceHeader(),
-            ),
-            Container(
-              height: 585,
-              padding: const EdgeInsets.symmetric(
-                horizontal: _horizontalDesktopPadding,
-              ),
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: spaceBetween(28, experienceItems),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsetsDirectional.only(
-                start: _horizontalDesktopPadding,
-                bottom: 81,
-                end: _horizontalDesktopPadding,
-                top: 109,
-              ),
+          SizedBox(
+            height: carouselHeight * 2,
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: _horizontalDesktopPadding),
               child: Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  FadeInImagePlaceholder(
-                    image: Theme.of(context).colorScheme.brightness ==
-                            Brightness.dark
-                        ? const AssetImage(
-                            'assets/logo/flutter_logo.png',
-                            package: 'flutter_gallery_assets',
-                          )
-                        : const AssetImage(
-                            'assets/logo/flutter_logo_color.png',
-                            package: 'flutter_gallery_assets',
-                          ),
-                    placeholder: const SizedBox.shrink(),
-                    excludeFromSemantics: true,
+                  const CircleAvatar(
+                    backgroundImage: AssetImage(profilePath),
+                    radius: 200,
                   ),
-                  Expanded(
-                    child: Wrap(
-                      crossAxisAlignment: WrapCrossAlignment.center,
-                      alignment: WrapAlignment.end,
-                      children: const [
-                        SettingsAbout(),
-                        SettingsFeedback(),
-                      ],
-                    ),
-                  ),
+                  Column(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(
+                          top: 5,
+                          bottom: 5
+                        ),
+                        child: SelectableText(
+                          introText,
+                          style: Theme.of(context).textTheme.headline4?.apply(
+                          color: Colors.white,
+                          fontSizeDelta: isDisplayDesktop(context) ? 16 : 0)
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            top: 1,
+                            bottom: 5
+                        ),
+                        child: SelectableText(
+                            introSubText,
+                            style: Theme.of(context).textTheme.headline4?.apply(
+                                color: Colors.grey,
+                                fontSizeDelta: isDisplayDesktop(context) ? 6 : 0)
+                        ),
+                      )
+                    ],
+                  )
                 ],
               ),
             ),
-          ],
-        ),
-      );
-    } else {
-      return Scaffold(
-        body: _AnimatedHomePage(
-          restorationId: 'animated_page',
-          isSplashPageAnimationFinished:
-              SplashPageAnimation.of(context).isFinished,
-          carouselCards: carouselCards,
-        ),
-      );
-    }
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: _horizontalDesktopPadding,
+            ),
+            child: _ExperienceHeader(),
+          ),
+          Container(
+            height: 750,
+            padding: const EdgeInsets.symmetric(
+              horizontal: _horizontalDesktopPadding,
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: verticalSpaceBetween(28, experienceItems),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: _horizontalDesktopPadding,
+            ),
+            child: _ProjectHeader(),
+          ),
+          Container(
+            height: 300,
+            padding: const EdgeInsets.symmetric(
+              horizontal: _horizontalDesktopPadding,
+            ),
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: horizontalSpaceBetween(28, projectItems),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsetsDirectional.only(
+              start: _horizontalDesktopPadding,
+              bottom: 81,
+              end: _horizontalDesktopPadding,
+              top: 109,
+            ),
+            child: Row(
+              /**children: [
+                FadeInImagePlaceholder(
+                  image: Theme.of(context).colorScheme.brightness ==
+                          Brightness.dark
+                      ? const AssetImage(
+                          'assets/logo/flutter_logo.png',
+                          package: 'flutter_gallery_assets',
+                        )
+                      : const AssetImage(
+                          'assets/logo/flutter_logo_color.png',
+                          package: 'flutter_gallery_assets',
+                        ),
+                  placeholder: const SizedBox.shrink(),
+                  excludeFromSemantics: true,
+                ),
+                Expanded(
+                  child: Wrap(
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    alignment: WrapAlignment.end,
+                    children: const [
+                      SettingsAbout(),
+                      SettingsFeedback(),
+                    ],
+                  ),
+                ),
+              ],*/
+            ),
+          ),
+        ],
+      ),
+    );
+
   }
 
-  List<Widget> spaceBetween(double paddingBetween, List<Widget> children) {
+  List<Widget> verticalSpaceBetween(double paddingBetween, List<Widget> children) {
     return [
       for (int index = 0; index < children.length; index++) ...[
         Flexible(
           child: children[index],
         ),
         if (index < children.length - 1) SizedBox(height: paddingBetween),
+      ],
+    ];
+  }
+
+  List<Widget> horizontalSpaceBetween(double paddingBetween, List<Widget> children) {
+    return [
+      for (int index = 0; index < children.length; index++) ...[
+        Flexible(
+          child: children[index],
+        ),
+        if (index < children.length - 1) SizedBox(width: paddingBetween),
       ],
     ];
   }
@@ -308,7 +237,7 @@ class _ProjectHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Header(
-      color: Theme.of(context).colorScheme.primary,
+      color: Theme.of(context).colorScheme.primaryContainer,
       text: 'Projects',
     );
   }
@@ -595,7 +524,7 @@ class _ExperienceIndHeader extends StatelessWidget {
           ),
           Flexible(
             child: Padding(
-              padding: const EdgeInsetsDirectional.only(end: 8),
+              padding: const EdgeInsetsDirectional.only(end: 15),
               child: Semantics(
                 header: true,
                 child: SelectableText(
@@ -613,6 +542,100 @@ class _ExperienceIndHeader extends StatelessWidget {
   }
 }
 
+
+class _ProjectItem extends StatelessWidget{
+  const _ProjectItem({
+    this.title,
+    this.asset,
+    this.details,
+  });
+
+  final String title;
+  final AssetImage asset;
+  final String details;
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    return Material(
+      borderRadius: BorderRadius.circular(10),
+      clipBehavior: Clip.antiAlias,
+      color: colorScheme.surface,
+      child: Semantics(
+        container: true,
+        child: FocusTraversalGroup(
+          policy: WidgetOrderTraversalPolicy(),
+          child: Column(
+              children: [
+                _ProjectIndHeader(title: title),
+                Divider(
+                  height: 2,
+                  thickness: 2,
+                  color: colorScheme.background,
+                ),
+                Flexible(
+                  child: Padding(
+                    padding: EdgeInsetsDirectional.only(
+                      start: 32,
+                      top: 20,
+                      end: isDisplayDesktop(context) ? 16 : 8,
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                         CircleAvatar(
+                           backgroundColor: Colors.transparent,
+                          backgroundImage: asset,
+                          radius: 40,
+                        ),
+                        Text(
+                          details,
+                          style: Theme.of(context).textTheme.subtitle1.apply(color: colorScheme.onSurface),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            )
+        ),
+      ),
+    );
+  }
+}
+
+class _ProjectIndHeader extends StatelessWidget {
+  const _ProjectIndHeader({
+    this.title,
+  });
+
+  final String title;
+
+
+  @override
+  Widget build(BuildContext context){
+    final colorScheme = Theme.of(context).colorScheme;
+    return Material(
+      // Makes integration tests possible.
+      key: ValueKey('${title}CategoryHeader'),
+      color: colorScheme.onBackground,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(15),
+            child: SelectableText(
+                title,
+                style: Theme.of(context).textTheme.headline5.apply(
+                  color: colorScheme.onSurface,
+                )
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
 
 /// Animates the category item to stagger in. The [_AnimatedCategoryItem.startDelayFraction]
 /// gives a delay in the unit of a fraction of the whole animation duration,

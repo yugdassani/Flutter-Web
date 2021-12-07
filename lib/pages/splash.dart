@@ -185,23 +185,20 @@ class _SplashBackLayer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var effectAsset = 'splash_effects/splash_effect_$effect.gif';
-    final flutterLogo = Image.asset(
-      'assets/logo/flutter_logo.png',
-      package: 'flutter_gallery_assets',
-    );
+    final ydLogo = Image.asset(logoPath);
 
     Widget child;
     if (isSplashCollapsed) {
       child = isDisplayDesktop(context)
           ? Padding(
-              padding: const EdgeInsets.only(top: 50),
+              padding: const EdgeInsets.only(top: 25),
               child: Align(
                 alignment: Alignment.topCenter,
                 child: MouseRegion(
                   cursor: SystemMouseCursors.click,
                   child: GestureDetector(
                     onTap: onTap,
-                    child: flutterLogo,
+                    child: ydLogo,
                   ),
                 ),
               ),
@@ -216,7 +213,7 @@ class _SplashBackLayer extends StatelessWidget {
               package: 'flutter_gallery_assets',
             ),
           ),
-          Center(child: flutterLogo),
+          Center(child: ydLogo),
         ],
       );
     }
