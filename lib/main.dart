@@ -19,11 +19,11 @@ export 'package:gallery/data/demos.dart' show pumpDeferredLibraries;
 
 void main() {
   GoogleFonts.config.allowRuntimeFetching = false;
-  runApp(const GalleryApp());
+  runApp(const YDWebsite());
 }
 
-class GalleryApp extends StatelessWidget {
-  const GalleryApp({
+class YDWebsite extends StatelessWidget {
+  const YDWebsite({
     Key key,
     this.initialRoute,
     this.isTestMode = false,

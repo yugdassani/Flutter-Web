@@ -8,7 +8,7 @@ import 'dart:convert' show JsonEncoder;
 import 'package:flutter/material.dart';
 import 'package:flutter_driver/driver_extension.dart';
 import 'package:gallery/data/demos.dart';
-import 'package:gallery/main.dart' show GalleryApp;
+import 'package:gallery/main.dart' show YDWebsite;
 
 // See transitions_perf_test.dart for how to run this test.
 
@@ -28,5 +28,5 @@ Future<String> _handleMessages(String message) async {
 
 void main() {
   enableFlutterDriverExtension(handler: _handleMessages);
-  runApp(const GalleryApp(isTestMode: true));
+  runApp(const YDWebsite(isTestMode: true));
 }

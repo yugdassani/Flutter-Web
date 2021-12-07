@@ -78,7 +78,7 @@ class GalleryAutomator {
       _initialWaitingDuration,
       testScrollsOnly ? automateScrolls : automateDemoGestures,
     );
-    return const GalleryApp();
+    return const YDWebsite();
   }
 
   /// Opens and quits demos that are specified by [shouldRunPredicate], twice.

@@ -16,13 +16,13 @@ void main() {
       await setUpBinding(tester);
       await pumpWidgetWithImages(
         tester,
-        const GalleryApp(),
+        const YDWebsite(),
         homeAssets,
       );
       await tester.pumpAndSettle();
 
       await expectLater(
-        find.byType(GalleryApp),
+        find.byType(YDWebsite),
         matchesGoldenFile('goldens/home_page_mobile_light.png'),
       );
     });
@@ -31,13 +31,13 @@ void main() {
       await setUpBinding(tester, brightness: Brightness.dark);
       await pumpWidgetWithImages(
         tester,
-        const GalleryApp(),
+        const YDWebsite(),
         homeAssets,
       );
       await tester.pumpAndSettle();
 
       await expectLater(
-        find.byType(GalleryApp),
+        find.byType(YDWebsite),
         matchesGoldenFile('goldens/home_page_mobile_dark.png'),
       );
     });
@@ -48,13 +48,13 @@ void main() {
       await setUpBinding(tester, size: desktopSize);
       await pumpWidgetWithImages(
         tester,
-        const GalleryApp(),
+        const YDWebsite(),
         homeAssets,
       );
       await tester.pumpAndSettle();
 
       await expectLater(
-        find.byType(GalleryApp),
+        find.byType(YDWebsite),
         matchesGoldenFile('goldens/home_page_desktop_light.png'),
       );
     });
@@ -67,13 +67,13 @@ void main() {
       );
       await pumpWidgetWithImages(
         tester,
-        const GalleryApp(),
+        const YDWebsite(),
         homeAssets,
       );
       await tester.pumpAndSettle();
 
       await expectLater(
-        find.byType(GalleryApp),
+        find.byType(YDWebsite),
         matchesGoldenFile('goldens/home_page_desktop_dark.png'),
       );
     });

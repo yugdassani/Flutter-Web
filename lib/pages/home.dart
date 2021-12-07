@@ -175,17 +175,59 @@ class HomePage extends StatelessWidget {
               padding: const EdgeInsets.symmetric(
                 horizontal: _horizontalDesktopPadding,
               ),
-              child: _GalleryHeader(),
+              child: _AboutHeader(),
             ),
             SizedBox(
-              height: carouselHeight,
-              child: _DesktopCarousel(children: carouselCards),
+              height: carouselHeight * 2,
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: _horizontalDesktopPadding),
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    const CircleAvatar(
+                      backgroundImage: AssetImage(profilePath),
+                      radius: 200,
+                    ),
+                    Column(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(
+                            top: 5,
+                            bottom: 5
+                          ),
+                          child: SelectableText(
+                            introText,
+                            style: Theme.of(context).textTheme.headline4?.apply(
+                            color: Colors.white,
+                            fontSizeDelta: isDisplayDesktop(context) ? 16 : 0)
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              top: 1,
+                              bottom: 5
+                          ),
+                          child: SelectableText(
+                              introSubText,
+                              style: Theme.of(context).textTheme.headline4?.apply(
+                                  color: Colors.grey,
+                                  fontSizeDelta: isDisplayDesktop(context) ? 6 : 0)
+                          ),
+                        )
+                      ],
+                    )
+                  ],
+                ),
+              ),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(
                 horizontal: _horizontalDesktopPadding,
               ),
-              child: _CategoriesHeader(),
+              child: _ExperienceHeader(),
             ),
             Container(
               height: 585,
@@ -228,7 +270,6 @@ class HomePage extends StatelessWidget {
                       children: const [
                         SettingsAbout(),
                         SettingsFeedback(),
-                        SettingsAttribution(),
                       ],
                     ),
                   ),
@@ -262,22 +303,32 @@ class HomePage extends StatelessWidget {
   }
 }
 
-class _GalleryHeader extends StatelessWidget {
+class _AboutHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Header(
       color: Theme.of(context).colorScheme.primaryContainer,
-      text: GalleryLocalizations.of(context).homeHeaderGallery,
+      text: 'About Me',
     );
   }
 }
 
-class _CategoriesHeader extends StatelessWidget {
+class _ExperienceHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Header(
       color: Theme.of(context).colorScheme.primary,
-      text: GalleryLocalizations.of(context).homeHeaderCategories,
+      text: 'Experience',
+    );
+  }
+}
+
+class _ProjectHeader extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Header(
+      color: Theme.of(context).colorScheme.primary,
+      text: 'Projects',
     );
   }
 }
@@ -393,7 +444,7 @@ class _AnimatedHomePageState extends State<_AnimatedHomePage>
             Container(
               margin:
                   const EdgeInsets.symmetric(horizontal: _horizontalPadding),
-              child: _GalleryHeader(),
+              child: _AboutHeader()
             ),
             _Carousel(
               animationController: _animationController,
@@ -403,7 +454,7 @@ class _AnimatedHomePageState extends State<_AnimatedHomePage>
             Container(
               margin:
                   const EdgeInsets.symmetric(horizontal: _horizontalPadding),
-              child: _CategoriesHeader(),
+              child: _ExperienceHeader(),
             ),
             _AnimatedCategoryItem(
               startDelayFraction: 0.00,

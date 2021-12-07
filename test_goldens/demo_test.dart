@@ -21,13 +21,13 @@ void main() {
       await tester.runAsync<void>(pumpDeferredLibraries);
       await pumpWidgetWithImages(
         tester,
-        const GalleryApp(initialRoute: demoBannerRoute),
+        const YDWebsite(initialRoute: demoBannerRoute),
         homeAssets,
       );
       await tester.pumpAndSettle();
 
       await expectLater(
-        find.byType(GalleryApp),
+        find.byType(YDWebsite),
         matchesGoldenFile('goldens/demo_mobile_light.png'),
       );
     });
@@ -37,13 +37,13 @@ void main() {
       await tester.runAsync<void>(pumpDeferredLibraries);
       await pumpWidgetWithImages(
         tester,
-        const GalleryApp(initialRoute: demoBannerRoute),
+        const YDWebsite(initialRoute: demoBannerRoute),
         homeAssets,
       );
       await tester.pumpAndSettle();
 
       await expectLater(
-        find.byType(GalleryApp),
+        find.byType(YDWebsite),
         matchesGoldenFile('goldens/demo_mobile_dark.png'),
       );
     });
@@ -55,13 +55,13 @@ void main() {
       await tester.runAsync<void>(pumpDeferredLibraries);
       await pumpWidgetWithImages(
         tester,
-        const GalleryApp(initialRoute: demoBannerRoute),
+        const YDWebsite(initialRoute: demoBannerRoute),
         homeAssets,
       );
       await tester.pumpAndSettle();
 
       await expectLater(
-        find.byType(GalleryApp),
+        find.byType(YDWebsite),
         matchesGoldenFile('goldens/demo_desktop_light.png'),
       );
     });
@@ -75,13 +75,13 @@ void main() {
       await tester.runAsync<void>(pumpDeferredLibraries);
       await pumpWidgetWithImages(
         tester,
-        const GalleryApp(initialRoute: demoBannerRoute),
+        const YDWebsite(initialRoute: demoBannerRoute),
         homeAssets,
       );
       await tester.pumpAndSettle();
 
       await expectLater(
-        find.byType(GalleryApp),
+        find.byType(YDWebsite),
         matchesGoldenFile('goldens/demo_desktop_dark.png'),
       );
     });

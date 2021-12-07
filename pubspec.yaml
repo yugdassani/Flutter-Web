@@ -94,6 +94,7 @@ flutter:
         - packages/flutter_gallery_assets/fonts/google_fonts/Raleway-Light.ttf
 
   assets:
+    - assets/
     - packages/flutter_gallery_assets/assets/studies/shrine_card_dark.png
     - packages/flutter_gallery_assets/assets/studies/starter_card.png
     - packages/flutter_gallery_assets/assets/studies/starter_card_dark.png

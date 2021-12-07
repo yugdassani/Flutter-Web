@@ -21,3 +21,9 @@ const splashPageAnimationDurationInMilliseconds = 300;
 
 // The desktop top padding for a page's first header (e.g. Gallery, Settings)
 const firstHeaderDesktopTopPadding = 5.0;
+
+const String profilePath = 'assets/YugDassani.jpg';
+const String introText = "Hi! I'm Yug Dassani.";
+const String introSubText = 'Software Developer | enVista';
+
+const String about = "I like this";
