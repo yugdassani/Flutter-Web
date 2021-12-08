@@ -53,7 +53,7 @@ class YDWebsite extends StatelessWidget {
             scrollBehavior:
                 const MaterialScrollBehavior().copyWith(scrollbars: false),
             restorationScopeId: 'rootGallery',
-            title: 'Flutter Gallery',
+            title: 'Yug Dassani',
             debugShowCheckedModeBanner: false,
             themeMode: GalleryOptions.of(context).themeMode,
             theme: GalleryThemeData.lightThemeData.copyWith(
