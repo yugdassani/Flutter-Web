@@ -15,7 +15,6 @@ import 'package:gallery/routes.dart';
 import 'package:gallery/themes/gallery_theme_data.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-export 'package:gallery/data/demos.dart' show pumpDeferredLibraries;
 
 void main() {
   GoogleFonts.config.allowRuntimeFetching = false;

@@ -1,6 +1,6 @@
 name: gallery
-description: A resource to help developers evaluate and use Flutter.
-repository: https://github.com/flutter/gallery
+description: Yug Dassani's personal website
+repository: https://github.com/yugdassani/Flutter-Web
 version: 2.9.3+020903
 
 environment:

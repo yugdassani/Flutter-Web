@@ -1,11 +1,11 @@
 {
-    "name": "Flutter Gallery",
-    "short_name": "Flutter Gallery",
+    "name": "Yug Dassani",
+    "short_name": "YD",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#030303",
     "theme_color": "#030303",
-    "description": "A resource to help developers evaluate and use Flutter.",
+    "description": "Yug Dassani's Website",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
